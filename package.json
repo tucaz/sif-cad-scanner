@@ -1,0 +1,29 @@
+{
+  "name": "sif-cad-scanner",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "sif-scanner": "^1.0.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tucaz/sif-cad-scanner.git"
+  },
+  "keywords": [
+    "sif",
+    "cad"
+  ],
+  "author": "tucaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tucaz/sif-cad-scanner/issues"
+  },
+  "homepage": "https://github.com/tucaz/sif-cad-scanner#readme"
+}
