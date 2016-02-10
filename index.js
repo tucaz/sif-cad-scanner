@@ -1,6 +1,5 @@
 var sifScanner = require("sif-scanner"),
-    async = require("async"),
-    _ = require("underscore");
+    async = require("async");
 
 function _getCadFile(baseModel, callback) {
     var sifScanner = require("sif-scanner");
@@ -23,13 +22,13 @@ function _getStaticLayers(baseModel, callback) {
             return callback(err);
         }
 
-        var r = _.map(results, function(item) {
-            var o = {};
+        var o = {};
+
+        results.forEach(function(item) {
             o[item["3DLA"]] = item.IM;
-            return o;
         });
 
-        callback(null, r);
+        callback(null, o);
     });
 }
 
@@ -44,6 +43,10 @@ function _getOptionKeys(baseModel, callback) {
         var item = results[0];
         var keyIndex = 0;
         var optionKeys = [];
+
+        if (!item) {
+            return callback(null, null);
+        }
 
         while (item["G" + keyIndex]) {
             optionKeys.push(item["G" + keyIndex]);
@@ -104,17 +107,5 @@ module.exports = function(baseModel, allDone) {
         staticLayers: function(callback) {
             _getStaticLayers(baseModel, callback);
         }
-    }, function(err, results) {
-        if (err) {
-            return allDone(err);
-        }
-
-        var r = {
-            cadFile: results["cadFile"],
-            dynamicLayers: results["dynamicLayers"],
-            staticLayers: results["staticLayers"]
-        };
-
-        allDone(null, r);
-    });
+    }, allDone);
 };

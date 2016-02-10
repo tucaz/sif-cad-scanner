@@ -9,7 +9,11 @@ function filter(item) {
 
 module.exports = function(topSifFilePath, iterator, callback) {
   sifScanner(topSifFilePath, /^PN\=/, filter, function(err, blocks) {
+    if(err) {
+      return callback(err);
+    }
+    
     var models = _.map(blocks, function(block) { return block.PN; });
     async.map(models, iterator, callback);
   });
-}
+};
